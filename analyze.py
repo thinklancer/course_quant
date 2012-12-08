@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 def main(ifile,index):
     # access the historical brenchmark
-    print "Access the historical data of ",index
+    # print "Access the historical data of ",index
     symbol = [index]
     startday = dt.datetime(2011,1,1)
     endday = dt.datetime(2011,12,31)
