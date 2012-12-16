@@ -44,8 +44,8 @@ def main(startport,orderfile,output):
         exit()
 
     # looping date
-    startday = dt.datetime(2011,1,1)
-    endday = dt.datetime(2011,12,31)
+    startday = dt.datetime(2008,1,1)
+    endday = dt.datetime(2009,12,31)
     timeofday = dt.timedelta(hours=16)
     timestamps = du.getNYSEdays(startday,endday,timeofday)
     close = dataobj.get_data(timestamps,stocks,"close")
@@ -64,7 +64,7 @@ def main(startport,orderfile,output):
             id = np.where(exdate == day.date())[0]
             for i in id:
                 stockid = stocks.index(ordersyms[i])
-                print 'on day',close.index[dayid].date(),'stock',close.columns[stockid],
+                #print 'on day',close.index[dayid].date(),'stock',close.columns[stockid]
                 if (order[i] == 'Buy'): # buy stock
                     # print ' - ',order[i],amount[i],ordersyms[i],exdate[i],close.values[dayid,stockid]
                     restamount = port[ordersyms[i]]+amount[i]
@@ -74,7 +74,7 @@ def main(startport,orderfile,output):
                     restamount = port[ordersyms[i]]-amount[i]
                     cash = port['cash']+amount[i]*close.values[dayid,stockid]
                 else:
-                    print "!! wrong order:',order[i]"
+                    print "!! wrong order:",order[i]
                     print "exiting now!!"
                     exit()
                 # record change

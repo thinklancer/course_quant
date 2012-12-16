@@ -18,8 +18,8 @@ def main(ifile,index):
     # access the historical brenchmark
     # print "Access the historical data of ",index
     symbol = [index]
-    startday = dt.datetime(2011,1,1)
-    endday = dt.datetime(2011,12,31)
+    startday = dt.datetime(2008,1,1)
+    endday = dt.datetime(2009,12,31)
     timeofday = dt.timedelta(hours=16)
     timestamps = du.getNYSEdays(startday,endday,timeofday)
 
@@ -45,7 +45,15 @@ def main(ifile,index):
     plt.xlabel('Date')
     savefig('adjustedclose.pdf',format='pdf')
     # analyze the return
+    print 'total return',(portprice[-1]-1)*100.
+    # analyze stddev
+    meanreturn = np.mean(portprice-1)
+    stddev = np.std(portprice)
+    print 'stddev:',stddev*100
     # sharpe ratio
+    return0 = np.mean(pricedat-1)
+    sharpe = (meanreturn-return0)/stddev
+    print 'sharpe ratio:',sharpe
 
 
 if __name__ == "__main__":
